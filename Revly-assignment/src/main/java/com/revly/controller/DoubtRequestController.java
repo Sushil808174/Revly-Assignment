@@ -32,10 +32,10 @@ public class DoubtRequestController {
 	}
 	
 	@PostMapping("/ask-doubt/{id}")
-	public ResponseEntity<DoubtRequests> askYourDoubt(@RequestBody DoubtRequests doubtRequests,@PathVariable Long id){
-		DoubtRequests d = doubtRequestService.createDoubt(doubtRequests,id);
+	public ResponseEntity<String> askYourDoubt(@RequestBody DoubtRequests doubtRequests,@PathVariable Long id){
+		String d = doubtRequestService.createDoubt(doubtRequests,id);
 		
-		return new ResponseEntity<DoubtRequests>(d,HttpStatus.CREATED);
+		return new ResponseEntity<String>(d,HttpStatus.CREATED);
 	}
 	
 	

@@ -39,4 +39,6 @@ public class DoubtRequests {
 	private String doubtText;
 	
 	private LocalDateTime timeStamp;
+	
+	private String tutorEmail;
 }

@@ -7,6 +7,6 @@ import com.revly.models.Users;
 
 public interface DoubtRequestService {
 	public List<DoubtRequests> getAllDoubtHistory(Users student);
-	public DoubtRequests createDoubt(DoubtRequests doubtRequest, Long id);
+	public String createDoubt(DoubtRequests doubtRequest, Long id);
 	
 }

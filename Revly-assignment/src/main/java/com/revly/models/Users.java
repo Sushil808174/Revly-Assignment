@@ -28,8 +28,11 @@ public class Users {
 	
 	@Enumerated(EnumType.STRING)
 	private UserType userType;
+	
+//	for tutor
+	@Enumerated(EnumType.STRING)
+	private SubjectType tutorExperties;
 	private String language;
 	private String classGrade;
-	
 	
 }
