@@ -50,8 +50,9 @@ public class AppConfig {
                     auth                         
 //                            .requestMatchers("/hello").permitAll()
                               .requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()
-                              .requestMatchers("/register-user","/hello").permitAll()
+                              .requestMatchers("/register-user","/hello","/all-available-tutor").permitAll()
                               .requestMatchers("/all-tutors","/all-students").hasRole("TUTOR")
+                              .requestMatchers("/doubt-history/**","/ask-doubt/**","/all-doubt").hasRole("STUDENT")
                             .anyRequest().authenticated();
                 })
                 .csrf(csrf -> csrf.disable())
