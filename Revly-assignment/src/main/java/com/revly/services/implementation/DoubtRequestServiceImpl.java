@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revly.exception.DoubtException;
 import com.revly.models.DoubtRequests;
 import com.revly.models.TutorAvailability;
 import com.revly.models.UserType;
@@ -34,13 +35,13 @@ public class DoubtRequestServiceImpl implements DoubtRequestService{
 	}
 
 	@Override
-	public String createDoubt(DoubtRequests doubtRequest,Long userId) {
+	public String createDoubt(DoubtRequests doubtRequest,Long userId) throws DoubtException{
 		Optional<Users> u = userRepository.findById(userId);
 		
 		if(u.isPresent()) {
 			DoubtRequests doubt = null;
 			Users user = u.get();
-			if(user.getUserType() == UserType.TUTOR) throw new RuntimeException("You are a teacher");
+			if(user.getUserType() == UserType.TUTOR) throw new DoubtException("You are a teacher");
 			
 			List<Users> tutors = userRepository.findAllTutors();
 			
@@ -101,7 +102,7 @@ public class DoubtRequestServiceImpl implements DoubtRequestService{
 			
 			
 		}
-		throw new RuntimeException("kldfjdlfjl");
+		throw new DoubtException("kldfjdlfjl");
 	}
 	
 

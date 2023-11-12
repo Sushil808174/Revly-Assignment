@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revly.exception.UserException;
 import com.revly.models.TutorAvailability;
 import com.revly.models.UserType;
 import com.revly.models.Users;
@@ -25,10 +26,10 @@ public class UserServiceImpl implements UserService{
 	
 
 	@Override
-	public Users registerUser(Users user) {
+	public Users registerUser(Users user) throws UserException{
 		Optional<Users> opt = userRepository.findByEmailId(user.getEmailId());
 		 if (opt.isPresent()) {
-		        throw new RuntimeException("Email is already in use");
+		        throw new UserException("Email is already in use");
 		    }
 
 		    userRepository.save(user);
@@ -45,10 +46,10 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public Users findById(Long id) {
+	public Users findById(Long id) throws UserException{
 		Optional<Users> opt = userRepository.findById(id);
 		if(opt.isEmpty()) {
-			throw new RuntimeException("found");
+			throw new UserException("Not found");
 		}else {
 			return opt.get();
 		}
