@@ -13,7 +13,6 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 public class GlobalExceptionHandler {
 	
 	
-	
 	@ExceptionHandler(UserException.class)
 	public ResponseEntity<ErrorDetails> userExceptionHandler(UserException ex ,WebRequest req){
 		ErrorDetails err= new ErrorDetails();

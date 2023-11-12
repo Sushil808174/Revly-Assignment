@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.revly.exception.DoubtException;
 import com.revly.models.DoubtRequests;
 import com.revly.models.TutorAvailability;
-import com.revly.models.UserType;
 import com.revly.models.Users;
 import com.revly.repository.DoubtRequestRepository;
 import com.revly.repository.TutorAvailabilityRepository;
@@ -41,7 +40,7 @@ public class DoubtRequestServiceImpl implements DoubtRequestService{
 		if(u.isPresent()) {
 			DoubtRequests doubt = null;
 			Users user = u.get();
-			if(user.getUserType() == UserType.TUTOR) throw new DoubtException("You are a teacher");
+			if(user.getUserType().equalsIgnoreCase("TUTOR")) throw new DoubtException("You are a teacher");
 			
 			List<Users> tutors = userRepository.findAllTutors();
 			
@@ -54,7 +53,7 @@ public class DoubtRequestServiceImpl implements DoubtRequestService{
 //				System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
 				
 				
-				if(tutor.getLanguage().equalsIgnoreCase(user.getLanguage()) && tutor.getTutorExperties() == doubtRequest.getSubjectType() && user.getClassGrade().equals(tutor.getClassGrade())) {
+				if(tutor.getLanguage().equalsIgnoreCase(user.getLanguage()) && tutor.getTutorExperties().toString().equalsIgnoreCase(doubtRequest.getSubjectType().toString()) && user.getClassGrade().equals(tutor.getClassGrade())) {
 					
 //					System.out.println(tutor.getUserName());
 //					System.out.println("line 54"); 
@@ -103,6 +102,12 @@ public class DoubtRequestServiceImpl implements DoubtRequestService{
 			
 		}
 		throw new DoubtException("kldfjdlfjl");
+	}
+
+	@Override
+	public List<DoubtRequests> getAllDoubt() {
+		List<DoubtRequests> allDoubt = doubtRequestRepository.findAll();
+		return allDoubt;
 	}
 	
 

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.revly.exception.UserException;
 import com.revly.models.TutorAvailability;
-import com.revly.models.UserType;
 import com.revly.models.Users;
 import com.revly.repository.TutorAvailabilityRepository;
 import com.revly.repository.UserRepository;
@@ -35,7 +34,7 @@ public class UserServiceImpl implements UserService{
 		    userRepository.save(user);
 
 		    // If the user is a tutor, save TutorAvailability
-		    if (user.getUserType() == UserType.TUTOR) {
+		    if (user.getUserType().equalsIgnoreCase("ROLE_TUTOR")) {
 		        TutorAvailability tutorAvailability = new TutorAvailability();
 		        tutorAvailability.setTutorEmail(user.getEmailId());
 		        tutorAvailability.setLastPingTime(LocalDateTime.now());
@@ -65,6 +64,17 @@ public class UserServiceImpl implements UserService{
 	public List<Users> findAllStudents() {
 		List<Users> students = userRepository.findAllStudents();
 		return students;
+	}
+
+	@Override
+	public Users findByEmailId(String name) throws UserException {
+		Optional<Users> opt = userRepository.findByEmailId(name);
+		if(opt.isPresent()) {
+			Users user = opt.get();
+			return user;
+		}
+		throw new UserException("User not found ");
+		
 	}
 
 }

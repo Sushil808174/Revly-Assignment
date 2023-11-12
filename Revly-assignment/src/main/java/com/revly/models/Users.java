@@ -26,8 +26,7 @@ public class Users {
 	private String emailId;
 	private String password;
 	
-	@Enumerated(EnumType.STRING)
-	private UserType userType;
+	private String userType;
 	
 //	for tutor
 	@Enumerated(EnumType.STRING)

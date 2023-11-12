@@ -13,4 +13,6 @@ public interface UserService {
 	public List<Users> findAllTutors();
 	
 	public List<Users> findAllStudents();
+
+	public Users findByEmailId(String name) throws UserException;
 }
