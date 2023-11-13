@@ -7,11 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.revly.models.Users;
 import com.revly.repository.UserRepository;
@@ -50,7 +46,12 @@ public class UserController {
 		List<Users> tutors = userService.findAllStudents();
 		return new ResponseEntity<List<Users>>(tutors,HttpStatus.OK);
 	}
-	
+
+	@GetMapping("/user/{id}")
+	public ResponseEntity<Users> getUserByIdHandler(@PathVariable Long id){
+		Users user = userService.findById(id);
+		return new ResponseEntity<>(user,HttpStatus.OK);
+	}
 	
 	@GetMapping("/signIn")
     public ResponseEntity<Users> getLoggedInUserDetailsHandler(Authentication auth){

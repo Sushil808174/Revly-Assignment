@@ -1,6 +1,7 @@
 package com.revly.repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,5 +16,8 @@ public interface TutorAvailabilityRepository extends JpaRepository<TutorAvailabi
 	
 	@Query("SELECT COUNT(*) FROM TutorAvailability t WHERE t.lastPingTime BETWEEN :stDate AND :enDate")
 	public int countRealTimeAvailableTutorBetweenTime(@Param("stDate") LocalDateTime stDate, @Param("enDate") LocalDateTime enDate);
+
+	@Query("SELECT t FROM TutorAvailability t WHERE t.lastPingTime BETWEEN :stDate AND :enDate")
+	public List<TutorAvailability> RealTimeAvailableTutorBetweenTime(@Param("stDate") LocalDateTime stDate, @Param("enDate") LocalDateTime enDate);
 } 
   

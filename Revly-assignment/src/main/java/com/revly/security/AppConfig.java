@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -50,9 +51,11 @@ public class AppConfig {
                     auth                         
 //                            .requestMatchers("/hello").permitAll()
                               .requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()
-                              .requestMatchers("/register-user","/hello","/all-available-tutor").permitAll()
+                              .requestMatchers("/register-user","/hello","/all-available-tutor","/all-tutor").permitAll()
                               .requestMatchers("/all-tutors","/all-students").hasRole("TUTOR")
-                              .requestMatchers("/doubt-history/**","/ask-doubt/**","/all-doubt").hasRole("STUDENT")
+                              .requestMatchers("/doubt-history/**","/all-doubt").hasRole("STUDENT")
+                            .requestMatchers(HttpMethod.POST,"/ask-doubt/**").hasRole("STUDENT")
+                            .requestMatchers("/user/**").hasAnyRole("STUDENT","TUTOR")
                             .anyRequest().authenticated();
                 })
                 .csrf(csrf -> csrf.disable())

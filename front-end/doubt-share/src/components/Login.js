@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Navigate } from "react-router-dom";
 
 
 
 const Login = () => {
-
+    const log = useRef(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
@@ -29,10 +29,11 @@ const Login = () => {
           const getToken = response.headers.get("Authorization");
           const result = await response.json();
           console.log(result);
+          log = false;
           localStorage.setItem('userId',result.userId);
           localStorage.setItem('token', getToken);
           console.log(getToken);
-          alert("login successfully!")
+          // alert("login successfully!")
         } catch (error) {
           console.error('Error during login:', error);
         }
@@ -41,6 +42,12 @@ const Login = () => {
 
   return (
     <div className="container mt-5">
+      {!log && <div class="alert alert-warning" role="alert">
+            You are not Logged In!
+        </div>}
+      {log && <div class="alert alert-success" role="alert">
+            Loggin successfully!...
+        </div>}
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card shadow">

@@ -1,6 +1,7 @@
 package com.revly.services.implementation;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,6 +63,20 @@ public class TutorAvailabilityServiceImpl implements TutorAvailabilityService{
 	@Override
 	public int countRealTimeAvailableTutor() {
 		return tutorAvailabilityRepository.countRealTimeAvailableTutorBetweenTime(LocalDateTime.now().minusSeconds(3), LocalDateTime.now());
+	}
+
+	@Override
+	public List<Users> realTimeAvailableTutor() {
+		List<TutorAvailability> availableTutor = tutorAvailabilityRepository.RealTimeAvailableTutorBetweenTime(LocalDateTime.now().minusSeconds(3),LocalDateTime.now());
+		List<Users> tutors = new ArrayList<>();
+		for(TutorAvailability t : availableTutor){
+			Optional<Users> opt = userRepository.findByEmailId(t.getTutorEmail());
+			if(opt.isPresent()) {
+				Users tutor = opt.get();
+				tutors.add(tutor);
+			}
+		}
+		return tutors;
 	}
 
 }

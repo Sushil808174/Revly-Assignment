@@ -5,6 +5,8 @@ import Login from "./Login";
 import Register from "./Register";
 import CreateDoubt from "./CreateDoubt";
 import DoubtList from "./DoubtList";
+import ActiveTutor from "./ActiveTutor";
+import UserProfile from "./UserProfile";
 
 const AllRouter = ()=>{
 
@@ -16,6 +18,8 @@ const AllRouter = ()=>{
                 <Route path="/login" element={<Login/>} />
                 <Route path="/register" element={<Register/>} />
                 <Route path="/create-doubt" element={<CreateDoubt/>}/>
+                <Route path="/active-tutor" element={<ActiveTutor />} />
+                <Route path="/profile" element={<UserProfile/>}/>
             </Routes>
        
     )
