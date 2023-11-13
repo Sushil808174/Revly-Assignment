@@ -1,10 +1,9 @@
-import React, { useRef, useState } from "react";
-import { Navigate } from "react-router-dom";
+import React, { useState } from "react";
 
 
 
 const Login = () => {
-    const log = useRef(false);
+    const [log,setLog] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
@@ -29,7 +28,7 @@ const Login = () => {
           const getToken = response.headers.get("Authorization");
           const result = await response.json();
           console.log(result);
-          log = false;
+          setLog(true);
           localStorage.setItem('userId',result.userId);
           localStorage.setItem('token', getToken);
           console.log(getToken);
