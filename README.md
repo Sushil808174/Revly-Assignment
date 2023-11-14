@@ -23,7 +23,9 @@ DoubtShare is a platform that connects students with available tutors to get the
 ### Prerequisites
 
 - Java
-- Node.js
+- Spring boot
+- Spring security
+- Basic React js
 - MySQL
 
 ### Installation
