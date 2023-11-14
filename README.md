@@ -1,7 +1,38 @@
 # Revly-Assignment
 
+# DoubtShare
+
+DoubtShare is a platform that connects students with available tutors to get their academic doubts resolved.
+
+## Tech Stack
+
+- **Backend**: Java with Spring Boot
+  - **Security**: Spring Security with JWT (JSON Web Tokens)
+- **Database**: MySQL
+- **Frontend**: React with Bootstrap
+- **Authentication**: JWT (JSON Web Tokens)
+
+## Features
+
+- **Real-Time Tutor Availability**: Track and display real-time availability status of tutors.
+- **Doubt Resolution**: Students can ask doubts, and available tutors can provide solutions.
+- **User Authentication**: Secure login and registration with Spring Security and JWT authentication.
+
+## Getting Started
+
+### Prerequisites
+
+- Java
+- Node.js
+- MySQL
+
+### Installation
+
+1. Clone the repository.
+   ```bash
+   git clone https://github.com/your-username/DoubtShare.git
 
 ## Netlify Link:-
-`https://65528131e603f41a72339e33--cheery-phoenix-9cb8c6.netlify.app/`
+```bash
+https://65528131e603f41a72339e33--cheery-phoenix-9cb8c6.netlify.app/
 
-## For Backend we need to run on our system.
