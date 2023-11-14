@@ -30,7 +30,7 @@ DoubtShare is a platform that connects students with available tutors to get the
 
 1. Clone the repository.
    ```bash
-   git clone https://github.com/your-username/DoubtShare.git
+   git clone https://github.com/Sushil808174/Revly-Assignment/
 
 ## Netlify Link:-
 ```bash
